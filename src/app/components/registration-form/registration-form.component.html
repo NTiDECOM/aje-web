@@ -1,0 +1,242 @@
+<h2>Inscrição</h2>
+
+<div class="row">
+  <div class="col-12">
+
+    <div class="row">
+      <div class="col-12">
+        <form #f="ngForm" name="attendeeForm" class="form-horizontal">
+          <div class="row">
+            <div class="col-12">
+              <div class="row form-group">
+                <div class="col-12 col-md-6">
+                  <label>Você leu todas as informações e está de acordo com as regras contidas no site do
+                    <a href="http://aje.fepb.org.br"
+                      target="_blank">AJE</a>?</label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="tos" [(ngModel)]="tos"> Sim, li, concordo e me responsabilizo a seguir as regras.
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="tos">
+            <div class="row form-group">
+              <div class="col-12 col-md-5">
+                <label>Nome completo</label>
+                <input class="form-control" [(ngModel)]="inscricao.pessoa.nome" 
+                placeholder="Nome completo" name="nome" required />
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-5">
+                <label>Como chamar</label>
+                <input class="form-control" [(ngModel)]="inscricao.pessoa.comoChamar" 
+                placeholder="Como chamar" name="comoChamar" required />
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-3">
+                <label>Sexo</label>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.pessoa.sexo" name="optionsRadios" 
+                    id="optionsRadios1" value="MASCULINO" required> Masculino
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.pessoa.sexo" name="optionsRadios" 
+                    id="optionsRadios2" value="FEMININO" required> Feminino
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-3">
+                <label>Tipo Sanguineo</label>
+                <select class="form-control" [(ngModel)]="inscricao.pessoa.tipoSanguineo" 
+                                              name="tipoSanguineo">
+                  <option value="A_POSITIVO">A+</option>
+                  <option value="A_NEGATIVO">A-</option>
+                  <option value="B_POSITIVO">B+</option>
+                  <option value="B_NEGATIVO">B-</option>
+                  <option value="AB_POSITIVO">AB+</option>
+                  <option value="AB_NEGATIVO">AB-</option>
+                  <option value="O_POSITIVO">O+</option>
+                  <option value="O_NEGATIVO">O-</option>
+                </select>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-3">
+                <label>É trabalhador do evento?</label>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.trabalhador" name="optionsRadiosWorker" 
+                    id="optionsRadiosWorker1" [value]="true" required> Sim
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.trabalhador" name="optionsRadiosWorker" 
+                    id="optionsRadiosWorker2" [value]="false" required> Não
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-2">
+                <label>Data de nascimento</label>
+                <input [(ngModel)]="inscricao.pessoa.dataNascimento" name="dataNascimento" required 
+                [mask]="dateMask" class="form-control" placeholder="dd/MM/yyyy" type="text" />
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-3">
+                <label>Telefone</label>
+                <input [(ngModel)]="inscricao.telefone" name="telefone" required 
+                [mask]="maskPhone" class="form-control" placeholder="(99) 99999-9999" />
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-4">
+                <label>Instituição</label>
+                <input class="form-control" [(ngModel)]="inscricao.instituicao" 
+                name="instituicao" placeholder="Instituição" />
+              </div>
+            </div>
+            <div class="row form-group" *ngIf="!inscricao.trabalhador">
+              <div class="col-12 col-md-4">
+                <label>Nome do Coordenador de Juventude</label>
+                <input class="form-control" [(ngModel)]="inscricao.nomeCoordenador" 
+                name="nome_coordenador" placeholder="Nome do Coordenador" [required]="!inscricao.trabalhador" />
+              </div>
+            </div>
+            <div class="row form-group" *ngIf="!inscricao.trabalhador">
+              <div class="col-12 col-md-4">
+                <label>Email do Coordenador de Juventude</label>
+                <input class="form-control" [(ngModel)]="inscricao.emailCoordenador" 
+                name="email_coordenador" placeholder="Email do Coordenador" [required]="!inscricao.trabalhador" />
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-4">
+                <div class="row form-group">
+                  <div class="col-12">
+                    <label>Restrição de Saúde</label>
+                    <div class="checkbox">
+                      <label>
+                        <input [(ngModel)]="saudeCheck" name="saudeCheck" type="checkbox"> Tenho restrições de saúde
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="saudeCheck" class="row form-group">
+                  <div class="col-12">
+                    <textarea class="form-control" placeholder="Descreva aqui"
+                    [(ngModel)]="inscricao.pessoa.restricaoSaude" 
+                    name="restricao_saude" rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-5">
+                <label>Oficina</label>
+                <select class="form-control" 
+                        [(ngModel)]="inscricao.oficina.id" 
+                        name="oficina"
+                        [required]="!inscricao.trabalhador">
+                  <option *ngFor="let o of oficinas" value="{{ o.id }}" [disabled]="o.numInscricoes >= o.vagas">{{ o.nome }} <span *ngIf="o.numInscricoes >= o.vagas">(Esgotado)</span></option>
+                </select>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-3">
+                <label>Alimentação</label>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.pessoa.restricaoAlimentar" name="optionsRadiosB" 
+                    id="optionsRadiosB1" value="COME_CARNE" required> Come carnes em geral
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.pessoa.restricaoAlimentar" name="optionsRadiosB" 
+                    id="optionsRadiosB2" value="NAO_COME_CARNE_VERMELHA" required> Não come carne vermelha
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.pessoa.restricaoAlimentar" name="optionsRadiosB" 
+                    id="optionsRadiosB3" value="VEGETARIANO" required> Vegetariano(a)
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" [(ngModel)]="inscricao.pessoa.restricaoAlimentar" name="optionsRadiosB" 
+                    id="optionsRadiosB4" value="VEGANO" required> Vegano(a)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-12 col-md-4">
+                  <label>E-mail</label>
+                  <input type="email" class="form-control" name="email" placeholder="E-mail" [(ngModel)]="inscricao.pessoa.email" required />
+                </div>
+              </div>
+            <!-- <div class="row form-group">
+              <div class="col-4">
+                <label>E-mail</label>
+                <input type="email" class="form-control" name="email" placeholder="E-mail" [(ngModel)]="email" required />
+                <div class="text-danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                  E-mail é obrigatório
+                </div>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-4">
+                <label>Confirme o E-mail</label>
+                <input type="email" class="form-control" name="emailConfirm" placeholder="E-mail" [(ngModel)]="emailConfirm" required
+                  compare="email" />
+                <div class="text-danger" *ngIf="emailConfirm.invalid && (emailConfirm.dirty || emailConfirm.touched)">
+                  <div *ngIf="emailConfirm.errors['required']">
+                    Confirmação de E-mail é obrigatório
+                  </div>
+                  <div *ngIf="emailConfirm.errors['compare']">
+                    Confirmação de E-mail não coincide com o E-mail
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div class="row form-group">
+              <div class="col-12 col-md-3">
+                <button type="button" class="btn btn-primary btn-lg" 
+                [disabled]="f.invalid" (click)="submitForm()">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<swal
+  #successAlert
+  title="Sucesso!"
+  text="Inscrição realizada com sucesso. O pagamento deve ser realizado em até 2x por depósito em conta, sendo as parcelas no valor de R$ 70,00 e com vencimento 06/08/2018 e 06/09/2018."
+  type="success"
+  (confirm)="swalClose()">
+</swal>
+
+<swal
+  #errorAlert
+  title="Erro!"
+  text="Algo deu errado. Não foi dessa vez :/"
+  type="error">
+</swal>

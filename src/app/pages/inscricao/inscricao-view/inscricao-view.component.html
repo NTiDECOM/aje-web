@@ -1,0 +1,114 @@
+<div class="row" style="margin-bottom: 30px;">
+  <div class="col-12 col-md-12">
+    <h2>Dados da Inscrição</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <h3>{{ inscricao.pessoa.nome }}</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Sexo: </strong>{{ inscricao.pessoa.sexo }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Data de Nascimento: </strong>{{ inscricao.pessoa.dataNascimento | date : "dd/MM/yyyy" }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Telefone: </strong>{{ inscricao.telefone }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Email: </strong>{{ inscricao.pessoa.email }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Como chamar: </strong>{{ inscricao.pessoa.comoChamar }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Tipo de Inscrição: </strong>
+    <span *ngIf="inscricao.trabalhador" class="badge badge-pill badge-secondary">Trabalhador</span>
+    <span *ngIf="!inscricao.trabalhador" class="badge badge-pill badge-primary">Participante</span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Pagamento: </strong>
+    <span *ngIf="inscricao.pago" class="badge badge-pill badge-success">Sim</span>
+    <span *ngIf="!inscricao.pago" class="badge badge-pill badge-danger">Não</span>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-12">
+      <strong>Oficina: </strong>{{ inscricao.oficina.nome }}
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Restrição de Saúde: </strong>{{ inscricao.pessoa.restricaoSaude }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Tipo Sanguíneo: </strong>{{ inscricao.pessoa.tipoSanguineo }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-12">
+    <strong>Restrição Alimentar: </strong>{{ inscricao.pessoa.restricaoAlimentar }}
+  </div>
+</div>
+
+<div class="row" style="margin-top: 30px;" *ngIf="!inscricao.trabalhador">
+  <div class="col-12 col-md-12">
+    <h4>Coordenador</h4>
+    <strong>Nome: </strong>{{ inscricao.nomeCoordenador }}<br />
+    <strong>Email: </strong>{{ inscricao.emailCoordenador }}
+  </div>
+</div>
+
+
+<div class="row" style="margin-top: 30px;" *ngIf="!inscricao.pago">
+  <div class="col-12 col-md-3">
+    <button class="btn btn-success" (click)="confirmarPagamento()">Confirmar Pagamento</button>
+  </div>
+  <div class="col-12 col-md-4">
+    <button class="btn btn-info" (click)="enviarEmailAutorizacao()">Enviar Email de Autorizacao</button>
+  </div>
+</div>
+
+<swal
+  #successAlert
+  title="Tudo Ok!"
+  text="Inscrição atualizada com sucesso"
+  type="success"
+  (confirm)="swalClose()">
+</swal>
+
+<swal
+  #errorAlert
+  title="Erro!"
+  text="Algo deu errado. Não foi dessa vez :/"
+  type="error">
+</swal>

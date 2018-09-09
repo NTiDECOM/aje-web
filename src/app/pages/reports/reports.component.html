@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div class="jumbotron">
+      <h1 class="display-3">Inscrições</h1>
+      <p class="lead">
+        <button class="btn btn-primary btn-lg" role="button" (click)="reportInscricoes()">PDF</button>
+        <button class="btn btn-primary btn-lg margin-left-btn" role="button" (click)="reportInscricoesExcel()">Excel</button>
+      </p>
+    </div>
+  </div>
+  <div class="col-12 col-md-6">
+    <div class="jumbotron">
+      <h1 class="display-3">Oficinas</h1>
+      <p class="lead">
+        <button class="btn btn-primary btn-lg" role="button" (click)="reportOficina()">Baixar</button>
+        <select class="form-control" id="exampleSelect1" name="oficinaId" [(ngModel)]="oficinaId">
+          <option value="{{ o.id }}" *ngFor="let o of oficinas">{{ o.nome }}</option>
+        </select>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div class="jumbotron">
+      <h1 class="display-3">Email de Autorização</h1>
+      <p class="lead">
+        <button class="btn btn-primary btn-lg" role="button" (click)="reportEmailAutorizacao()">Enviar Emails</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<swal
+  #successAlert
+  title="Sucesso!"
+  text="Os emails de autorização de menor foram enviados com sucesso!."
+  type="success">
+</swal>
+
+<swal
+  #errorAlert
+  title="Erro!"
+  text="Algo deu errado. Não foi dessa vez :/"
+  type="error">
+</swal>
