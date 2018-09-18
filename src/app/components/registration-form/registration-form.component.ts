@@ -5,6 +5,7 @@ import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { RegistrationService } from '../../services/registration.service';
 import { Inscricao } from '../../models/inscricao';
 import { OficinaService } from '../../services/oficina.service';
+import { ConfiguracaoEventoService } from '../../services/configuracaoEvento.service';
 // import { Router } from '@angular/router';
 
 @Component({
@@ -25,14 +26,25 @@ export class RegistrationFormComponent implements OnInit {
   private oficinas: any;
 
   public tos: any;
+  public config: any;
 
   constructor(private registrationService: RegistrationService, 
-              private oficinaService: OficinaService) { }
+              private oficinaService: OficinaService,
+              private configuracaoEventoService: ConfiguracaoEventoService) { }
 
   ngOnInit() {
+    this.config = {liberado: true};
     this.oficinaService.listaOficinas().subscribe(
       data => this.oficinas = data,
       error => console.log(error)
+    );
+    this.configuracaoEventoService.buscarConfiguracao().subscribe(
+      (data) => {
+        this.config = data;
+      },
+      (error) => {
+        console.log(error);
+      }
     );
     this.inscricao = new Inscricao();
   }
