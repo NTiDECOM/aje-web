@@ -1,10 +1,8 @@
-<h2>Inscrição</h2>
-
-<div class="row">
+<div class="row" *ngIf="config.liberado">
   <div class="col-12">
-
     <div class="row">
       <div class="col-12">
+        <h2>Inscrição</h2>
         <form #f="ngForm" name="attendeeForm" class="form-horizontal">
           <div class="row">
             <div class="col-12">
@@ -221,6 +219,17 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="!config.liberado">
+  <div class="col-12" style="text-align: center;">
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title">Inscrições Encerradas</h4>
+        
       </div>
     </div>
   </div>

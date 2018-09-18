@@ -3,18 +3,9 @@
 [backgroundColor]="'#f44336'">
 </ng-http-loader>
 <div class="container mt-4">
-  <div class="row" *ngIf="!block">
+  <div class="row">
     <div class="col">
       <router-outlet></router-outlet>
     </div>
-  </div>
-  <div>
-    <div class="card" *ngIf="block">
-        <div class="card-body text-center">
-          <h4>
-              Este navegador não é suportado. Recomendamos utilizar o Google Chrome ou Mozilla Firefox
-          </h4>
-        </div>
-      </div>
   </div>
 </div>

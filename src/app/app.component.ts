@@ -18,12 +18,6 @@ export class AppComponent implements OnInit {
               private deviceService: DeviceDetectorService) {}
 
   ngOnInit() {
-    var deviceInfo = this.deviceService.getDeviceInfo();
-    if (deviceInfo.browser === 'safari') {
-      this.block = true;
-    } else {
-      this.block = false;
-    }
     let currentUser = localStorage.getItem('currentUser');
 
     if (currentUser != null && currentUser != undefined) {
