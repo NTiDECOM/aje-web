@@ -29,6 +29,20 @@
       </p>
     </div>
   </div>
+  <div class="col-12 col-md-6">
+    <div class="jumbotron" style="padding-bottom:3.2em;">
+      <h1 class="display-3" style="font-size:3.5em;">Alimentação</h1>
+      <p class="lead">
+        <button class="btn btn-primary btn-lg" role="button" (click)="reportAlimentacao()">Baixar</button>
+        <select class="form-control" id="exampleSelect2" name="alimentacao" [(ngModel)]="alimentacao">
+          <option value="COME_CARNE">Come Carne</option>
+          <option value="NAO_COME_CARNE_VERMELHA">Não Come Carne Vermelha</option>
+          <option value="VEGETARIANO">Vegetariano</option>
+          <option value="VEGANO">Vegano</option>
+        </select>
+      </p>
+    </div>
+  </div>
 </div>
 
 <swal
