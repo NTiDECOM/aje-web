@@ -13,6 +13,12 @@ export class ReportService {
     return this.http.post(environment.baseApi + 'aje/inscricoes/email-autorizacao', null);
   }
 
+  reportAlimentacao(tipo) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get(environment.baseApi + 'aje/report/alimentacao/' + tipo, {headers: headers, responseType: 'blob'});
+  }
+
   reportInscricoes() {
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/pdf');

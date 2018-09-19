@@ -15,6 +15,7 @@ export class ReportsComponent implements OnInit {
 
   public oficinas: any;
   public oficinaId: any;
+  public alimentacao: any;
 
   @ViewChild('successAlert') private successAlert: SwalComponent;
   @ViewChild('errorAlert') private errorAlert: SwalComponent;
@@ -62,6 +63,22 @@ export class ReportsComponent implements OnInit {
         var link = document.createElement('a');
         link.href = fileURL;
         link.download = 'INSCRICOES_AJE2018.pdf';
+        link.dispatchEvent(new MouseEvent('click'));
+      }, 
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  reportAlimentacao() {
+    this.reportService.reportAlimentacao(this.alimentacao).subscribe(
+      (pdf) => {
+        let file = new Blob([pdf], { type: 'application/pdf' });            
+        var fileURL = URL.createObjectURL(file);
+        var link = document.createElement('a');
+        link.href = fileURL;
+        link.download = 'ALIMENTACAO_AJE2018.pdf';
         link.dispatchEvent(new MouseEvent('click'));
       }, 
       (error) => {
