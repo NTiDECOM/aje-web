@@ -6,6 +6,8 @@ import { RegistrationService } from '../../services/registration.service';
 import { Inscricao } from '../../models/inscricao';
 import { OficinaService } from '../../services/oficina.service';
 import { ConfiguracaoEventoService } from '../../services/configuracaoEvento.service';
+import { EstadoService } from 'src/app/services/estado.service';
+import { CidadeService } from 'src/app/services/cidade.service';
 // import { Router } from '@angular/router';
 
 @Component({
@@ -24,13 +26,18 @@ export class RegistrationFormComponent implements OnInit {
   private inscricao: Inscricao;
   private fDataNascimento: string;
   private oficinas: any;
+  private estados: any;
+  private cidades: any;
 
   public tos: any;
   public config: any;
+  public idEstado: any;
 
   constructor(private registrationService: RegistrationService, 
               private oficinaService: OficinaService,
-              private configuracaoEventoService: ConfiguracaoEventoService) { }
+              private configuracaoEventoService: ConfiguracaoEventoService,
+              private estadoService: EstadoService,
+              private cidadeService: CidadeService) { }
 
   ngOnInit() {
     this.config = {liberado: true};
@@ -45,6 +52,10 @@ export class RegistrationFormComponent implements OnInit {
       (error) => {
         console.log(error);
       }
+    );
+    this.estadoService.listarEstados().subscribe(
+      data => this.estados = data,
+      error => console.log(error)
     );
     this.inscricao = new Inscricao();
   }
@@ -67,6 +78,13 @@ export class RegistrationFormComponent implements OnInit {
     this.registrationService.salvarInscricao(this.inscricao).subscribe(
       data => this.success(data),
       error => this.error(error) 
+    );
+  }
+
+  listarCidades() {
+    this.cidadeService.listarCidadesPorEstado(this.idEstado).subscribe(
+      data => this.cidades = data,
+      error => console.log(error)
     );
   }
 

@@ -106,6 +106,29 @@
                 name="instituicao" placeholder="Instituição" />
               </div>
             </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-4">
+                <label>Estado</label>
+                <select class="form-control" 
+                        [(ngModel)]="idEstado" 
+                        name="estado"
+                        (change)="listarCidades()"
+                        [required]="true">
+                  <option *ngFor="let e of estados" value="{{ e.id }}">{{e.nome}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-12 col-md-4">
+                <label>Cidade</label>
+                <select class="form-control" 
+                        [(ngModel)]="inscricao.cidade.id" 
+                        name="cidade"
+                        [required]="true">
+                  <option *ngFor="let c of cidades" value="{{ c.id }}">{{c.nome}}</option>
+                </select>
+              </div>
+            </div>
             <div class="row form-group" *ngIf="!inscricao.trabalhador">
               <div class="col-12 col-md-4">
                 <label>Nome do Coordenador de Juventude</label>

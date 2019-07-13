@@ -1,5 +1,6 @@
 import { Pessoa } from "./pessoa";
 import { Oficina } from "./oficina";
+import { Cidade } from "./cidade";
 
 export class Inscricao {
     id: number;
@@ -10,9 +11,11 @@ export class Inscricao {
     emailCoordenador: string;
     pessoa: Pessoa;
     oficina: Oficina;
+    cidade: Cidade;
 
     constructor() {
         this.pessoa = new Pessoa();
         this.oficina = new Oficina();
+        this.cidade = new Cidade();
     }
 }
