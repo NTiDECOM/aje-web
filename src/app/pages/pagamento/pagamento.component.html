@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Pagamento
+            <strong>{{ today | date: 'dd/MM/yyyy' }}</strong>
+            <span class="float-right"><span class="badge {{classeSpanStatus(inscricao.pagamento.status)}}">{{textoSpanStatus(inscricao.pagamento.status)}}</span></span>
+
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+
+                <div class="col-sm-6">
+                    <h6 class="mb-3">Beneficiário:</h6>
+                    <div>
+                        <strong>Federação Espírita Paraibana</strong>
+                    </div>
+                    <div>Avenida Bento da Gama, 555 - João Pessoa (PB)</div>
+                    <div>Email: aje@fepb.org.br</div>
+                    <div>Telefone: <a href="tel:+558332213590">(83) 3221-3590</a></div>
+                </div>
+
+            </div>
+
+            <div class="table-responsive-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="center">#</th>
+                            <th>Item</th>
+                            <th>Descrição</th>
+
+                            <th class="right">Valor Unitário</th>
+                            <th class="center">Quantidade</th>
+                            <th class="right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="center">{{pagamento.externalReference}}</td>
+                            <td class="left strong">AJE 2019</td>
+                            <td class="left">Inscrição no acampamento de juventudes espiritas</td>
+
+                            <td class="right">R$ {{inscricao.valor}}</td>
+                            <td class="center">1</td>
+                            <td class="right">R$ {{inscricao.valor}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-5">
+
+                </div>
+
+                <div class="col-lg-4 col-sm-5 ml-auto">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left">
+                                    <strong>Subtotal</strong>
+                                </td>
+                                <td class="right">R$ 160</td>
+                            </tr>
+                            <tr *ngIf="inscricao.valor != 160">
+                                <td class="left">
+                                    <strong>Desconto (6%)</strong>
+                                </td>
+                                <td class="right">R$ 10</td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong>Total</strong>
+                                </td>
+                                <td class="right">
+                                    <strong>R$ {{inscricao.valor}}</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+		<button type="button" class="btn btn-success" (click)="pagar()">Pagar</button>
+        </div>
+    </div>
+</div>

@@ -25,6 +25,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { InscricaoEditComponent } from './pages/inscricao/inscricao-edit/inscricao-edit.component';
 import { InscricaoViewComponent } from './pages/inscricao/inscricao-view/inscricao-view.component';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ReportsComponent } from './pages/reports/reports.component';
     SpanTrabalhadorDirective,
     InscricaoEditComponent,
     InscricaoViewComponent,
-    ReportsComponent
+    ReportsComponent,
+    PagamentoComponent
   ],
   imports: [
     BrowserModule,
