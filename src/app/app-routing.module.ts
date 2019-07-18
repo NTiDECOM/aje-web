@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { InscricaoViewComponent } from './pages/inscricao/inscricao-view/inscricao-view.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
+import { ValidacaoComponent } from './pages/validacao/validacao.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'inscricao/:id/view', component: InscricaoViewComponent},
   {path: 'login', component: LoginComponent},
   {path: 'relatorio', component: ReportsComponent},
-  {path: 'pagamento/:id', component: PagamentoComponent}
+  {path: 'pagamento/:id', component: PagamentoComponent},
+  {path: 'validacao/:id', component: ValidacaoComponent}
 ];
 
 @NgModule({

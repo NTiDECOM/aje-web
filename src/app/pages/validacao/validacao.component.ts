@@ -1,34 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { RegistrationService } from 'src/app/services/registration.service';
 import { ActivatedRoute } from '@angular/router';
-import { RegistrationService } from '../../../services/registration.service';
-import { SwalComponent } from '../../../../../node_modules/@toverux/ngx-sweetalert2';
+import { SwalComponent } from '../../../../node_modules/@toverux/ngx-sweetalert2';
 
 @Component({
-  selector: 'app-inscricao-view',
-  templateUrl: './inscricao-view.component.html',
-  styleUrls: ['./inscricao-view.component.css']
+  selector: 'app-validacao',
+  templateUrl: './validacao.component.html',
+  styleUrls: ['./validacao.component.css']
 })
-export class InscricaoViewComponent implements OnInit {
+export class ValidacaoComponent implements OnInit {
 
   @ViewChild('successAlert') private successAlert: SwalComponent;
   @ViewChild('errorAlert') private errorAlert: SwalComponent;
 
   inscricao: any;
-
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
               private registrationService: RegistrationService) { }
 
   ngOnInit() {
     this.route.params.subscribe( params => 
       this.registrationService.dadosInscricao(params['id']).subscribe(
-        data => {
-          this.inscricao = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error)
-        }
+        data => this.inscricao = data,
+        error => console.log(error)
       )
+    );
+  }
+
+  aprovarInscricao() {
+    this.registrationService.aprovarInscricao(this.inscricao.id).subscribe(
+      data => {
+        this.success(data);
+      },
+      err => {
+        this.error(err);
+      }
     );
   }
 
@@ -39,30 +44,6 @@ export class InscricaoViewComponent implements OnInit {
   error(error) {
     console.log(error);
     this.errorAlert.show()
-  }
-
-  enviarEmailAutorizacao() {
-    this.registrationService.enviarEmailAutorizacao(this.inscricao.id).subscribe(
-      (data) => {
-        this.success(data);
-      },
-      (error) => {
-        this.error(error);
-      }
-    );
-  }
-
-  confirmarPagamento() {
-    this.inscricao.pago = true;
-    this.registrationService.atualizarInscricao(this.inscricao).subscribe(
-      (data) => {
-        this.successAlert.show();
-      },
-      (error) => {
-        console.log(error);
-        this.errorAlert.show();
-      }
-    );
   }
 
   swalClose() {
@@ -118,4 +99,5 @@ export class InscricaoViewComponent implements OnInit {
         return 'Não Iniciado';
     }
   }
+
 }

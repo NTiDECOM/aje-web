@@ -30,4 +30,8 @@ export class RegistrationService {
     return this.http.get(environment.baseApi + 'aje/inscricoes/' + id);
   }
 
+  aprovarInscricao(idInscricao) {
+    return this.http.post(environment.baseApi + 'aje/inscricoes/validar-inscricao', {id: idInscricao, valida: true});
+  }
+
 }
