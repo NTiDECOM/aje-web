@@ -90,7 +90,7 @@ export class PagamentoComponent implements OnInit {
       case 'charged_back':
         return 'Credito Devolvido';
       default:
-        return '';
+        return 'Não Iniciado';
     }
   }
 

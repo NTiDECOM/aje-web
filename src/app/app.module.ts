@@ -26,6 +26,7 @@ import { InscricaoEditComponent } from './pages/inscricao/inscricao-edit/inscric
 import { InscricaoViewComponent } from './pages/inscricao/inscricao-view/inscricao-view.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
+import { ValidacaoComponent } from './pages/validacao/validacao.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PagamentoComponent } from './pages/pagamento/pagamento.component';
     InscricaoEditComponent,
     InscricaoViewComponent,
     ReportsComponent,
-    PagamentoComponent
+    PagamentoComponent,
+    ValidacaoComponent
   ],
   imports: [
     BrowserModule,
