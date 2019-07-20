@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card" *ngIf="inscricao.isValida">
+    <div class="card" *ngIf="inscricao.valida">
         <div class="card-header">
             Pagamento
             <strong>{{ today | date: 'dd/MM/yyyy' }}</strong>
@@ -85,7 +85,7 @@
 		<button type="button" class="btn btn-success" (click)="pagar()">Pagar</button>
         </div>
     </div>
-    <div class="card text-white bg-warning mb-3" style="max-width: 20rem;" *ngIf="!inscricao.isValida">
+    <div class="card text-white bg-warning mb-3" style="max-width: 20rem;" *ngIf="!inscricao.valida">
         <div class="card-header">Aviso</div>
         <div class="card-body">
             <h4 class="card-title">Validação de Inscrição</h4>
