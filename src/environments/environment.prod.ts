@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseApi: 'https://fepb-api.herokuapp.com/api/',
+  baseApi: 'http://api.fepb.org.br:8080/api/',
   codigoEvento: 'AJE2019'
 };
