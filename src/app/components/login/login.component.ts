@@ -53,7 +53,25 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
-                this.router.navigate([this.returnUrl]);
+                this.authenticationService.getAuthorities().pipe(first())
+                .subscribe(
+                  data => {
+                    if (data.authorities) {
+                      if (!data.authorities.includes('ROLE_AJE')) {
+                        this.error = "Usuario sem permissao para este sistema";
+                        this.authenticationService.logout();
+                        this.loading = false;
+                      } else {
+                        this.router.navigate([this.returnUrl]);
+                      }
+                    }
+                    
+                  },
+                  err => {
+                    this.error = "Erro ao validar permissao do usuario";
+                    this.loading = false;
+                  }
+                );
             },
             data => {
                 this.error = "Login e/ou senha incorreto";

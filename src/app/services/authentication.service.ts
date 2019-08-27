@@ -34,6 +34,10 @@ export class AuthenticationService {
         }));
   }
 
+  getAuthorities() {
+    return this.http.get<any>(environment.baseApi + 'account');
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
