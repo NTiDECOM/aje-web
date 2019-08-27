@@ -64,7 +64,15 @@ export class DashboardComponent implements AfterViewInit, OnDestroy, OnInit {
 
   countPagamentos() {
     var pagamentos = this.inscricoes.filter((i) => {
-      return i.pagamento != null && i.pagamento != undefined && i.pagamento.status != null && i.pagamento.status != undefined && i.pagamento.status === 'approved';
+      if (i.pagamento != undefined && i.pagamento != null) {
+        if (i.pagamento.status != undefined && i.pagamento.status != null) {
+          return i.pagamento.status === 'approved';
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
     });
     return pagamentos.length;
   }
